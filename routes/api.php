@@ -17,7 +17,7 @@ use App\Http\Controllers\CompanyController;
 */
 # 1. Create and edit contacts
 Route::post('/contacts', [ContactController::class, 'create']);
-Route::put('/contacts', [ContactController::class, 'edit']);
+Route::put('/contacts/{contactId}', [ContactController::class, 'edit']);
 
 # 2. Retrieve a paginated list of all contacts
 Route::get('/contacts', [ContactController::class, 'all']);
@@ -28,7 +28,7 @@ Route::get('/contacts/{contactId}', [ContactController::class, 'get']);
 # 4. Can store multiple contacts for the same company
 Route::post('/multiple-contacts/{companyId}', [ContactController::class, 'storeMultipleContactsForACompany']);
 
-# 5. Can store notes against a contact
+# 5. Store notes against a contact
 Route::post('/add-notes/{contactId}', [ContactController::class, 'addNotes']);
 
 # 6. List all contacts at a given company

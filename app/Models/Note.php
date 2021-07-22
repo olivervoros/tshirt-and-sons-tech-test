@@ -9,6 +9,8 @@ class Note extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['contact_id', 'note'];
+
     public function contact()
     {
         return $this->belongsTo(Contact::class);

@@ -9,6 +9,8 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     /**
      * Get the contacts for the company.
      */

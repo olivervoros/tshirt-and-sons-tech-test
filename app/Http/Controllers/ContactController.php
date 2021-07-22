@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\Note;
 
 class ContactController extends Controller
 {
@@ -38,14 +39,23 @@ class ContactController extends Controller
 
     }
 
-    public function addNotes($contactId)
+    // TODO: move this the notecontroller...
+    public function addNotes($contactId, Request $request)
     {
+        $this->validate($request, [
+            'note' => 'required',
+        ]);
 
+        $note = new Note();
+        $note->contact_id = $contactId;
+        $note->note = $request->input('note');
+
+        return response()->json($note, 201);
     }
 
-    public function edit($id, Request $request)
+    public function edit($companyId, Request $request)
     {
-        $contact = Contact::findOrFail($id);
+        $contact = Contact::findOrFail($companyId);
         $contact->company_id =  $request->input('company_id');
         $contact->name =  $request->input('name');
         $contact->email =  $request->input('email');
@@ -58,7 +68,7 @@ class ContactController extends Controller
 
     public function listByCompanyId($companyId)
     {
-        return response()->json(Contact::where('company_id', $companyId));
+        return response()->json(Contact::where('company_id', $companyId)->get());
     }
 
     public function searchByContactName($name)
