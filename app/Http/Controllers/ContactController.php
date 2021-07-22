@@ -73,11 +73,13 @@ class ContactController extends Controller
 
     public function searchByContactName($name)
     {
-        //return response()->json(Contact::where('company_id', $companyId));
+        return Contact::where('name', 'like', '%' . $name . '%')->get();
     }
 
     public function searchByCompanyName($companyName)
     {
-        //return response()->json(Contact::where('company_id', $companyId));
+        return Contact::where('companies.name', 'like', '%' . $companyName . '%')
+            ->leftJoin('companies', 'companies.id', '=', 'contacts.company_id')
+            ->get();
     }
 }

@@ -38,6 +38,6 @@ Route::get('/list-all-contacts-for-a-company/{companyId}', [ContactController::c
 Route::get('/companies', [CompanyController::class, 'all']);
 
 # 8. Search for contacts by name or company
-Route::get('/search-for-contact-by-company/{companyName}', [CompanyController::class, 'searchByCompanyName']);
-Route::get('/search-for-contact-by-name/{contactName}', [CompanyController::class, 'searchByContactName']);
+Route::get('/search-for-contact-by-company/{companyName}', [ContactController::class, 'searchByCompanyName']);
+Route::get('/search-for-contact-by-name/{contactName}', [ContactController::class, 'searchByContactName']);
 
