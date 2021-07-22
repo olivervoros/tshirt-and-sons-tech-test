@@ -4,82 +4,70 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function all()
     {
-        //
+        return Contact::paginate(request()->all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function get($id)
     {
-        //
+        return response()->json(Contact::find($id));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        //
+        $this->validate($request, [
+            'company_id' => 'required|integer',
+            'name' => 'required',
+            'tel' => 'numeric|min:100000|max:999999',
+            'email' => 'required|email'
+        ]);
+
+        $contact = Contact::create($request->all());
+
+        return response()->json($contact, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
+    public function storeMultipleContactsForACompany($companyId)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contact $contact)
+    public function addNotes($contactId)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contact $contact)
+    public function edit($id, Request $request)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        $contact->company_id =  $request->input('company_id');
+        $contact->name =  $request->input('name');
+        $contact->email =  $request->input('email');
+        $contact->tel =  $request->input('tel');
+        $contact->updated_at =  date('Y-m-d G:i:s');
+        $contact->save();
+
+        return response()->json($contact, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contact $contact)
+    public function listByCompanyId($companyId)
     {
-        //
+        return response()->json(Contact::where('company_id', $companyId));
+    }
+
+    public function searchByContactName($name)
+    {
+        //return response()->json(Contact::where('company_id', $companyId));
+    }
+
+    public function searchByCompanyName($companyName)
+    {
+        //return response()->json(Contact::where('company_id', $companyId));
     }
 }
