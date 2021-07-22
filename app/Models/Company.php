@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
+
+    /**
+     * Get the contacts for the company.
+     */
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
 }

@@ -22,7 +22,10 @@ class ContactFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'company_id' => mt_rand(1,5),
+            'name' => $this->faker->name(),
+            'tel' => mt_rand(100000, 999999),
+            'email' => $this->faker->email()
         ];
     }
 }

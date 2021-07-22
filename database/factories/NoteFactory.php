@@ -22,7 +22,8 @@ class NoteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'contact_id' => mt_rand(1, 100),
+            'note' => $this->faker->word(10)
         ];
     }
 }
