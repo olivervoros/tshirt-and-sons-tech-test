@@ -13,9 +13,9 @@ class ContactController extends Controller
         return Contact::paginate(request()->all());
     }
 
-    public function get($id)
+    public function get(int $id)
     {
-        return response()->json(Contact::find($id));
+        return response()->json(Contact::findOrFail($id));
     }
 
     public function create(Request $request)
@@ -37,23 +37,32 @@ class ContactController extends Controller
 
         $contacts = json_decode($request->input('contacts'), true);
         if(empty($contacts) OR !is_array($contacts)) {
-            return response('Missing contacts or invalid contact structure.', 406);
+            return response('Missing contacts or incorrect data structure.', 406);
         }
 
-        foreach($contacts as $contact) {
-            $newContact = new Contact();
-            $newContact->company_id = $companyId;
-            $newContact->name = $contact['name'];
-            $newContact->email = $contact['email'];
-            $newContact->tel = $contact['tel'];
-            $newContact->save();
+        $newContact = [];
+        foreach($contacts as $key => $contact) {
+
+            if(empty($contact['name']) OR empty($contact['email']) OR empty($contact['tel'])) {
+                continue;
+            }
+
+            $newContact[$key]['company_id'] = $companyId;
+            $newContact[$key]['name'] = $contact['name'];
+            $newContact[$key]['email'] = $contact['email'];
+            $newContact[$key]['tel'] = $contact['tel'];
+            $newContact[$key]['created_at'] = date('Y-m-d G:i:s');
+        }
+        $result = Contact::insert($newContact);
+        if( ! $result) {
+            return response('Adding multiple contacts for a company was unsuccessful.', 406);
         }
 
         return response()->json("The contacts have been saved successfully.", 201);
 
     }
 
-    public function edit($companyId, Request $request)
+    public function edit(int $companyId, Request $request)
     {
         $contact = Contact::findOrFail($companyId);
         $contact->company_id =  $request->input('company_id');
@@ -61,25 +70,53 @@ class ContactController extends Controller
         $contact->email =  $request->input('email');
         $contact->tel =  $request->input('tel');
         $contact->updated_at =  date('Y-m-d G:i:s');
-        $contact->save();
+        $result = $contact->save();
+        if( ! $result) {
+            return response('Editing the contact was unsuccessful.', 406);
+        }
 
         return response()->json($contact, 200);
     }
 
-    public function listByCompanyId($companyId)
+    public function listByCompanyId(int $companyId)
     {
-        return response()->json(Contact::where('company_id', $companyId)->get());
+        if(empty($companyId)) {
+            return response('Missing Company ID.', 406);
+        }
+
+        $contacts = Contact::where('company_id', $companyId)->get();
+        if(empty($contacts)) {
+            return response('There are no contacts for the company.', 406);
+        }
+        return response()->json($contacts);
     }
 
-    public function searchByContactName($name)
+    public function searchByContactName(string $name)
     {
-        return Contact::where('name', 'like', '%' . $name . '%')->get();
+        if(empty($name)) {
+            return response('The contact name to search by is missing.', 406);
+        }
+
+        $result = Contact::where('name', 'like', '%' . $name . '%')->get();
+        if(empty($result)) {
+            return response("There are no contacts for the for the contact name: $name", 406);
+        }
+        return $result;
     }
 
-    public function searchByCompanyName($companyName)
+    public function searchByCompanyName(string $companyName)
     {
-        return Contact::where('companies.name', 'like', '%' . $companyName . '%')
+        if(empty($companyName)) {
+            return response('The company name to search by is missing.', 406);
+        }
+
+        $result = Contact::where('companies.name', 'like', '%' . $companyName . '%')
             ->leftJoin('companies', 'companies.id', '=', 'contacts.company_id')
             ->get();
+
+        if(empty($result)) {
+            return response("There are no contacts for the for the company: $companyName", 406);
+        }
+        return $result;
     }
 }
