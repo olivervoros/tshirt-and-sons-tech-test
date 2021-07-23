@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Route::get('/contacts/{contactId}', [ContactController::class, 'get']);
 Route::post('/multiple-contacts/{companyId}', [ContactController::class, 'storeMultipleContactsForACompany']);
 
 # 5. Store notes against a contact
-Route::post('/add-notes/{contactId}', [ContactController::class, 'addNotes']);
+Route::post('/add-notes/{contactId}', [NoteController::class, 'addNotes']);
 
 # 6. List all contacts at a given company
 Route::get('/list-all-contacts-for-a-company/{companyId}', [ContactController::class, 'listByCompanyId']);

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Models\Note;
 
 class ContactController extends Controller
 {
@@ -34,23 +32,25 @@ class ContactController extends Controller
         return response()->json($contact, 201);
     }
 
-    public function storeMultipleContactsForACompany($companyId)
+    public function storeMultipleContactsForACompany(int $companyId, Request $request)
     {
 
-    }
+        $contacts = json_decode($request->input('contacts'), true);
+        if(empty($contacts) OR !is_array($contacts)) {
+            return response('Missing contacts or invalid contact structure.', 406);
+        }
 
-    // TODO: move this the notecontroller...
-    public function addNotes($contactId, Request $request)
-    {
-        $this->validate($request, [
-            'note' => 'required',
-        ]);
+        foreach($contacts as $contact) {
+            $newContact = new Contact();
+            $newContact->company_id = $companyId;
+            $newContact->name = $contact['name'];
+            $newContact->email = $contact['email'];
+            $newContact->tel = $contact['tel'];
+            $newContact->save();
+        }
 
-        $note = new Note();
-        $note->contact_id = $contactId;
-        $note->note = $request->input('note');
+        return response()->json("The contacts have been saved successfully.", 201);
 
-        return response()->json($note, 201);
     }
 
     public function edit($companyId, Request $request)
