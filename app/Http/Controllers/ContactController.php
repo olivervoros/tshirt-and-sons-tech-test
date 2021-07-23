@@ -10,7 +10,7 @@ class ContactController extends Controller
 
     public function all()
     {
-        return Contact::paginate(request()->all());
+        return Contact::paginate(10);
     }
 
     public function get(int $id)
@@ -85,7 +85,7 @@ class ContactController extends Controller
         }
 
         $contacts = Contact::where('company_id', $companyId)->get();
-        if(empty($contacts)) {
+        if($contacts->isEmpty()) {
             return response('There are no contacts for the company.', 406);
         }
         return response()->json($contacts);
@@ -98,7 +98,7 @@ class ContactController extends Controller
         }
 
         $result = Contact::where('name', 'like', '%' . $name . '%')->get();
-        if(empty($result)) {
+        if($result->isEmpty()) {
             return response("There are no contacts for the for the contact name: $name", 406);
         }
         return $result;
@@ -114,7 +114,7 @@ class ContactController extends Controller
             ->leftJoin('companies', 'companies.id', '=', 'contacts.company_id')
             ->get();
 
-        if(empty($result)) {
+        if($result->isEmpty()) {
             return response("There are no contacts for the for the company: $companyName", 406);
         }
         return $result;
