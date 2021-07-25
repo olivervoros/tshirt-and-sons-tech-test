@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "87685670-1ca6-41d1-bb0f-5166a5c4900b",
+		"name": "tshirt-and-sons-tech-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "company_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Oliver",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "oliver@example.com",
+							"type": "text"
+						},
+						{
+							"key": "tel",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/contacts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit contacts",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "company_id",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "changed",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "changed@example.com\n",
+							"type": "text"
+						},
+						{
+							"key": "tel",
+							"value": "999999",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/contacts/20",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"contacts",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a single contact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/contacts/4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"contacts",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all contacts at a given company",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDVhMjdkZWU0OGJkZWFmM2NkODQ0OTZjZDI2NGIwMTg3MjM5ZjAwMTk2OTIzNzRjMmZiMzhkN2I0NTE5MzM2Y2JjNzMwZmUxNmUyMWJlNTMiLCJpYXQiOjE2MjcyMjAxMjYuMTU3NDI2LCJuYmYiOjE2MjcyMjAxMjYuMTU3NDM4LCJleHAiOjE2NTg3NTYxMjYuMTQ0Mywic3ViIjoiMSIsInNjb3BlcyI6W119.pOBd-k4gGkzX5H8p2zpK4it_044HMcE_KTE9HMOFgQJHUjL9UjhdqYuNx-frGvVOfL9G99JxX7rsdQZAwSX2kvjxm7cz2vsZ9bynl6l3ohviPTY8ho_BHJ2vsBA9axSKf7nEWyBIX8kfeJ5Euipajn-O8YWp_fsYdQRzVXhgFBAbSEK6PQZcVl32NNtsSyJ9gyHjhMrvQa_7GYclQMpeuiT4vTm1veL3XuGSiXlj2MssX33m5lZPBmNcLJRURBH23AMBq_0BnlTgDy8-QUIaecNFfjzMyL-QwC0fs-lbSjdDybYy1wNuMNiBcq8H52DbqEID2Yh4gj-5rih2Wk_CTEiwdXPnruetanCEO1pxEt1_50PF2P7zwjzae8NYl00PB9Tr_dW4xqZEzIBrAwDE4bVVmUhZvZKYLb_hy35zXAXwaIDoSRvPDns4xXVpRmd-k7SoxyCokDu8JaLraiIsqLstlNDu-6KmT3l2fpastLmC98UBudDllNYQfPa37SEp7p5Z-UMyAZGAhvefQhHmLVY3XBBzgTuYbJdrAk8_AyT1L1-euqX5NqrQ1yfJrumyZqDW_UfHXBYvWkapGtb9IPDbWY3cPsFllGhzRGRtzthlrn2ndnupMLNr8tdZT5rRmjk09oTTP0lU4iIbMFEC7QKN7klF9OhmeBFtJzTdzH4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/list-all-contacts-for-a-company/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"list-all-contacts-for-a-company",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all companies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/companies",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store notes against a contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "note",
+							"value": "We are adding a new note now...",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/add-notes/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"add-notes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search for contacts by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/search-for-contact-by-name/batz",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search-for-contact-by-name",
+						"batz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search for contacts by company",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/search-for-contact-by-company/mercedes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search-for-contact-by-company",
+						"mercedes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a paginated list of all contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/contacts?page=4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"contacts"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store multiple contacts for the same company",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "contacts",
+							"value": " [ {\"name\":\"contact1\", \"email\": \"email1@example.com\", \"tel\":\"123456\"}, {\"name\":\"contact2\", \"email\": \"email2@example.com\", \"tel\":\"123457\"}, {\"name\":\"contact3\", \"email\": \"email3@example.com\", \"tel\":\"123458\"}]",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/multiple-contacts/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"multiple-contacts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Test User",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "testuser@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "testuser@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api"
+		}
+	]
+}
