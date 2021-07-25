@@ -111,16 +111,6 @@
 		{
 			"name": "List all contacts at a given company",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDVhMjdkZWU0OGJkZWFmM2NkODQ0OTZjZDI2NGIwMTg3MjM5ZjAwMTk2OTIzNzRjMmZiMzhkN2I0NTE5MzM2Y2JjNzMwZmUxNmUyMWJlNTMiLCJpYXQiOjE2MjcyMjAxMjYuMTU3NDI2LCJuYmYiOjE2MjcyMjAxMjYuMTU3NDM4LCJleHAiOjE2NTg3NTYxMjYuMTQ0Mywic3ViIjoiMSIsInNjb3BlcyI6W119.pOBd-k4gGkzX5H8p2zpK4it_044HMcE_KTE9HMOFgQJHUjL9UjhdqYuNx-frGvVOfL9G99JxX7rsdQZAwSX2kvjxm7cz2vsZ9bynl6l3ohviPTY8ho_BHJ2vsBA9axSKf7nEWyBIX8kfeJ5Euipajn-O8YWp_fsYdQRzVXhgFBAbSEK6PQZcVl32NNtsSyJ9gyHjhMrvQa_7GYclQMpeuiT4vTm1veL3XuGSiXlj2MssX33m5lZPBmNcLJRURBH23AMBq_0BnlTgDy8-QUIaecNFfjzMyL-QwC0fs-lbSjdDybYy1wNuMNiBcq8H52DbqEID2Yh4gj-5rih2Wk_CTEiwdXPnruetanCEO1pxEt1_50PF2P7zwjzae8NYl00PB9Tr_dW4xqZEzIBrAwDE4bVVmUhZvZKYLb_hy35zXAXwaIDoSRvPDns4xXVpRmd-k7SoxyCokDu8JaLraiIsqLstlNDu-6KmT3l2fpastLmC98UBudDllNYQfPa37SEp7p5Z-UMyAZGAhvefQhHmLVY3XBBzgTuYbJdrAk8_AyT1L1-euqX5NqrQ1yfJrumyZqDW_UfHXBYvWkapGtb9IPDbWY3cPsFllGhzRGRtzthlrn2ndnupMLNr8tdZT5rRmjk09oTTP0lU4iIbMFEC7QKN7klF9OhmeBFtJzTdzH4",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -205,13 +195,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/search-for-contact-by-company/mercedes",
+					"raw": "{{base_url}}/search-for-contact-by-company/kenneth",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"search-for-contact-by-company",
-						"mercedes"
+						"kenneth"
 					]
 				}
 			},
@@ -352,6 +342,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGZlNzQ5MGUyNGM5OTU1NGZjNzBiOWFjZGVlNzc2NjgzZGU4YWY2NTIwYjhiMzhiYzg4ZDMyYmNlMTg3NWNkOGUyODUwYmY3MTEzMDc1NjAiLCJpYXQiOjE2MjcyMzc0MTIuMDU2NjE3LCJuYmYiOjE2MjcyMzc0MTIuMDU2NjI5LCJleHAiOjE2NTg3NzM0MTIuMDM3NTEyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.e9tZXz9X1LqTjXDt8xf7LC7WZMrroC-RJnKY6wx-LSOhyKOf5UVG6B9mL55lOJsM7_xQxTUBvzcVWlU3wTFQ654E__aZ9APWVRebnVPy0ApeWnhxzqefzu0CW4YFQoY3ddxNpyHSaBzIlJr1pLij3TDQC8hFv0eExdUbZiiyQiUtdO-vcs6ea5RmrqQXTlmSoIH8qMvE9vN6kkef2GF_SC6dcwjOa8kc4bOF_cdXJEXrOgWB-WUSuEWQ1ET5KN6kAqVgjAuYhfGN7aLUCNh-Bw-9yHaFIvOh07zQhZuVg37TWJlGdI9NO7sei2lgOrn6a_kMcNa61YqsU8FZIthc_dY-yVHAsj8dASfVTK1X9q3ttHbFjPHFPOIXMCkaEDSFubeZzJvUqXmLMzs6VDenpbv1GHp9J3dOAQZPoorRyBRVgofjuxFJ3Tm7eYqoMfiyD3Nf_2kIPdqPi439g-42V2F05_23L2H1IibUgGKVa1Wg50Vn-hnjZaNJQ01uawepFiXTqDUpCfBUI9ZSoNT3oD8wKjvpy5GRKGURsCcUTtctJqH4P6oPINih7TwSxaA__-8l8kgXM_dwrvsvIfCJ7JxohwwvdQ4iKNiNH2KeuBfraYc2DtZsKzag-WjY133jsr7sC-uTMbQjCLi9SAnPUF7WdzDPWhzX2ebeXGsKoZM",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",

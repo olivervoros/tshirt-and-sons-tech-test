@@ -106,7 +106,7 @@ class ContactController extends Controller
         if($result->isEmpty()) {
             return  response()->json("There are no contacts for the for the contact name: $name", 404);
         }
-        return $result;
+        return response()->json($result);
     }
 
     public function searchByCompanyName(string $companyName):JsonResponse
@@ -122,6 +122,6 @@ class ContactController extends Controller
         if($result->isEmpty()) {
             return response()->json("There are no contacts for the for the company: $companyName", 404);
         }
-        return $result;
+        return response()->json($result);
     }
 }
