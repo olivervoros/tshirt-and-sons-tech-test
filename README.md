@@ -1,9 +1,10 @@
-# When you run the migrations use the seeders flag, so your DB will be populated with data for testing
+### When you run the migrations use the seeders flag, so your DB will be populated with data for testing
 php artisan migrate --seed
 
-# I have added all the endpoints to Postman, and exported out the endpoints to the docs folder.
+### I have added all the endpoints to Postman, and exported out the endpoints to the docs folder.
+See docs/tshirt-and-sons-tech-test.postman_collection.json
 
-# Endpoint documentation:
+### Endpoint documentation:
 1. Create a contact POST http://localhost:8000/api/contacts
 
 2. Edit a contact PUT http://localhost:8000/api/contacts/{contactId}
@@ -13,6 +14,10 @@ php artisan migrate --seed
 4. Retrieve a single contact GET http://localhost:8000/api/contacts/{contactId}
 
 5. Store multiple contacts for the same company
+   Example data to add:
+   [{"name":"contact1", "email": "email1@example.com", "tel":"123456"}, 
+   {"name":"contact2", "email": "email2@example.com", "tel":"123457"}, 
+   {"name":"contact3", "email": "email3@example.com", "tel":"123458"}]
 
 6. Store notes against a contact POST http://localhost:8000/api/add-notes/{contactId}
 
@@ -28,6 +33,8 @@ All the above endpoints are protected by a very simple token based auth,
 so you will need to register a user first, generate a token, and add it to the given request as a bearer token.
 Once you have a registered user, you can use the login endpoint to generate a token.
 (See images in the docs folder...)
+
+
 
 11. Register a User POST http://localhost:8000/api/register
 
