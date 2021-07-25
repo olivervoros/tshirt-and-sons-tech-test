@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Note;
 
 class NoteController extends Controller
 {
 
-    public function addNotes(int $contactId, Request $request)
+    public function addNotes(int $contactId, Request $request):JsonResponse
     {
         $this->validate($request, [
             'note' => 'required',
